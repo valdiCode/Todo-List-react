@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import Swal from "sweetalert2";
 import { v4 as uuidv4 } from "uuid";
 import { useFormulario } from "../hooks/useFormulario";
@@ -56,20 +55,20 @@ const Formulario = ({ agregarTodo }) => {
 
   return (
     <>
-      <h3>Agregar TODO</h3>
-      <form onSubmit={handleSubmit}>
+      <h3 className="mt-5 text-center">TODO List</h3>
+      <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
         <input
           type="text"
           className="form-control mb-2"
           name="nombre"
-          placeholder="Ingrese TODO nombre"
+          placeholder="Type TODO name..."
           value={nombre}
           onChange={handleChange}
         />
         <textarea
           className="form-control mb-2"
           name="descripcion"
-          placeholder="Ingrese TODO descripción"
+          placeholder="Type TODO description..."
           value={descripcion}
           onChange={handleChange}
         />
@@ -79,8 +78,8 @@ const Formulario = ({ agregarTodo }) => {
           value={estado}
           onChange={handleChange}
         >
-          <option value="pendiente">Pendiente</option>
-          <option value="completado">Completado</option>
+          <option value="pendiente">Pending</option>
+          <option value="completado">Completed</option>
         </select>
         <div className="form-check mb-2">
           <input
@@ -92,10 +91,10 @@ const Formulario = ({ agregarTodo }) => {
             onChange={handleChange}
           />
           <label className="form-check-label" htmlFor="flexCheckDefault">
-            PRIORITARIO
+            PRIORITY
           </label>
         </div>
-        <button className="btn btn-primary w-100">Agregar TODO</button>
+        <button className="btn btn-primary w-25">ADD TODO</button>
       </form>
     </>
   );
