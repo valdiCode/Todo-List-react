@@ -3,24 +3,13 @@ import Form from "./Form";
 import Todo from "./Todo";
 
 const TodoList = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")));
 
   useEffect(() => {
-
-    console.log("READING TODOS LOCALSTORAGE");
-
-    if (localStorage.getItem("todos")) {
-      setTodos(JSON.parse(localStorage.getItem("todos")));
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log("SAVING TODOS LOCALSTORAGE");
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
   const addTodo = (todo) => {
-    console.log(todo);
     setTodos((old) => [...old, todo]);
   };
 
