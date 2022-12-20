@@ -55,8 +55,11 @@ const Formulario = ({ agregarTodo }) => {
 
   return (
     <>
-      <h3 className="mt-5 text-center">TODO List</h3>
-      <form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
+      <h3 className="mt-5 text-center form-header">TODO List</h3>
+      <form
+        onSubmit={handleSubmit}
+        className="d-flex flex-column align-items-center"
+      >
         <input
           type="text"
           className="form-control mb-2"

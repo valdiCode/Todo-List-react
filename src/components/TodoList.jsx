@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Formulario from "./Formulario";
+import Form from "./Form";
 import Todo from "./Todo";
 
 const TodoList = () => {
@@ -35,7 +35,7 @@ const TodoList = () => {
 
   return (
     <>
-      <Formulario agregarTodo={agregarTodo} />
+      <Form agregarTodo={agregarTodo} />
       <ul className="list-group list-group-numbered mt-2">
         {todos.map((item) => (
           <Todo
