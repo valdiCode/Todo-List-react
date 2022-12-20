@@ -1,54 +1,54 @@
 import Swal from "sweetalert2";
 import { v4 as uuidv4 } from "uuid";
-import { useFormulario } from "../hooks/useFormulario";
+import { useForm } from "../hooks/useForm";
 import './Form.css';
 
-const Formulario = ({ agregarTodo }) => {
+const Form = ({ addTodo }) => {
   const initialState = {
-    nombre: "",
-    descripcion: "",
-    estado: "pendiente",
-    prioridad: false,
+    name: "",
+    description: "",
+    state: "pending",
+    priority: false,
   };
 
-  const [inputs, handleChange, reset] = useFormulario(initialState);
+  const [inputs, handleChange, reset] = useForm(initialState);
 
-  const { nombre, descripcion, estado, prioridad } = inputs;
+  const { name, description, state, priority } = inputs;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!nombre.trim()) {
+    if (!name.trim()) {
       e.target[0].focus();
       Swal.fire({
-        title: "Complete el nombre",
-        text: "Campos obligatorios",
+        title: "Complete name",
+        text: "Required field",
         icon: "error",
-        confirmButtonText: "Vale",
+        confirmButtonText: "Ok",
       });
       return;
     }
-    if (!descripcion.trim()) {
+    if (!description.trim()) {
       e.target[1].focus();
       Swal.fire({
-        title: "Complete la descripción",
-        text: "Campos obligatorios",
+        title: "Complete description",
+        text: "Required field",
         icon: "error",
-        confirmButtonText: "Vale",
+        confirmButtonText: "Ok",
       });
       return;
     }
     Swal.fire({
-      title: "Éxito",
-      text: "Tarea agregada",
+      title: "Success",
+      text: "Task added",
       icon: "success",
-      confirmButtonText: "Entendido",
+      confirmButtonText: "Ok",
     });
 
-    agregarTodo({
-      nombre: nombre,
-      descripcion: descripcion,
-      estado: estado === "pendiente" ? false : true,
-      prioridad: prioridad,
+    addTodo({
+      name: name,
+      description: description,
+      state: state === "pending" ? false : true,
+      priority: priority,
       id: uuidv4(),
     });
     reset();
@@ -64,34 +64,34 @@ const Formulario = ({ agregarTodo }) => {
         <input
           type="text"
           className="form-control mb-2"
-          name="nombre"
+          name="name"
           placeholder="Type TODO name..."
-          value={nombre}
+          value={name}
           onChange={handleChange}
         />
         <textarea
           className="form-control mb-2"
-          name="descripcion"
+          name="description"
           placeholder="Type TODO description..."
-          value={descripcion}
+          value={description}
           onChange={handleChange}
         />
         <select
-          name="estado"
+          name="state"
           className="form-control mb-2 select-design"
-          value={estado}
+          value={state}
           onChange={handleChange}
         >
-          <option value="pendiente">Pending</option>
+          <option value="pending">Pending</option>
           <option value="completado">Completed</option>
         </select>
         <div className="form-check mb-2">
           <input
             className="form-check-input"
             type="checkbox"
-            name="prioridad"
+            name="priority"
             id="flexCheckDefault"
-            checked={prioridad}
+            checked={priority}
             onChange={handleChange}
           />
           <label className="form-check-label" htmlFor="flexCheckDefault">
@@ -104,4 +104,4 @@ const Formulario = ({ agregarTodo }) => {
   );
 };
 
-export default Formulario;
+export default Form;

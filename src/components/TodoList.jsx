@@ -6,43 +6,45 @@ const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    console.log("Leer todos local");
+
+    console.log("READING TODOS LOCALSTORAGE");
+
     if (localStorage.getItem("todos")) {
       setTodos(JSON.parse(localStorage.getItem("todos")));
     }
   }, []);
 
   useEffect(() => {
-    console.log("Guardar todo local");
+    console.log("SAVING TODOS LOCALSTORAGE");
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  const agregarTodo = (todo) => {
+  const addTodo = (todo) => {
     console.log(todo);
     setTodos((old) => [...old, todo]);
   };
 
-  const eliminarTodo = (id) => {
+  const deleteTodo = (id) => {
     setTodos((old) => old.filter((item) => item.id !== id));
   };
 
-  const editarTodo = (id) => {
-    const editarTodos = todos.map((item) =>
-      item.id === id ? { ...item, estado: !item.estado } : item
+  const editTodo = (id) => {
+    const editTodos = todos.map((item) =>
+      item.id === id ? { ...item, state: !item.state } : item
     );
-    setTodos(editarTodos);
+    setTodos(editTodos);
   };
 
   return (
     <>
-      <Form agregarTodo={agregarTodo} />
+      <Form addTodo={addTodo} />
       <ul className="list-group list-group-numbered mt-2">
         {todos.map((item) => (
           <Todo
             key={item.id}
             todo={item}
-            eliminarTodo={eliminarTodo}
-            editarTodo={editarTodo}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
           />
         ))}
       </ul>
