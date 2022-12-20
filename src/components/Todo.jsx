@@ -23,7 +23,7 @@ const Todo = ({ todo, eliminarTodo, editarTodo }) => {
             </button>
           </div>
         </div>
-        <span className="badge priority-task rounded-pill">
+        <span className="badge bg-primary rounded-pill">
           {prioridad && "Priority Task"}
         </span>
       </li>
