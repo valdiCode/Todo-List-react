@@ -1,0 +1,22 @@
+.form-header {
+    color: #3d405b;
+    font-size: 3em;
+    font-family: monospace;
+    font-weight: 900;
+}
+
+.select-design {
+    cursor: pointer;
+}
+
+.btn-color {
+    background-color: #3d405b;
+    color: #fff;
+}
+
+.btn-color:hover {
+    opacity: .9;
+    color: #fff;
+}
+
+

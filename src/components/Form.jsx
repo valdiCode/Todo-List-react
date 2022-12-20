@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { v4 as uuidv4 } from "uuid";
 import { useFormulario } from "../hooks/useFormulario";
+import './Form.css';
 
 const Formulario = ({ agregarTodo }) => {
   const initialState = {
@@ -55,7 +56,7 @@ const Formulario = ({ agregarTodo }) => {
 
   return (
     <>
-      <h3 className="mt-5 text-center form-header">TODO List</h3>
+      <h3 className="mt-5 text-center form-header">TODO <i>List</i></h3>
       <form
         onSubmit={handleSubmit}
         className="d-flex flex-column align-items-center"
@@ -77,7 +78,7 @@ const Formulario = ({ agregarTodo }) => {
         />
         <select
           name="estado"
-          className="form-control mb-2"
+          className="form-control mb-2 select-design"
           value={estado}
           onChange={handleChange}
         >
@@ -97,7 +98,7 @@ const Formulario = ({ agregarTodo }) => {
             PRIORITY
           </label>
         </div>
-        <button className="btn btn-primary w-25">ADD TODO</button>
+        <button className="btn btn-color w-25">ADD TODO</button>
       </form>
     </>
   );
