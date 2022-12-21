@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
+import Empty from "./Empty";
 import Form from "./Form";
 import Todo from "./Todo";
 
 const TodoList = () => {
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")));
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -24,19 +29,26 @@ const TodoList = () => {
     setTodos(editTodos);
   };
 
+  console.log(todos);
+
   return (
     <>
       <Form addTodo={addTodo} />
-      <ul className="list-group list-group-numbered mt-2">
-        {todos.map((item) => (
-          <Todo
-            key={item.id}
-            todo={item}
-            deleteTodo={deleteTodo}
-            editTodo={editTodo}
-          />
-        ))}
-      </ul>
+
+      {!todos?.lenght === 0 ? (
+        <ul className="list-group list-group-numbered mt-2">
+          {todos?.map((item) => (
+            <Todo
+              key={item.id}
+              todo={item}
+              deleteTodo={deleteTodo}
+              editTodo={editTodo}
+            />
+          ))}
+        </ul>
+      ) : (
+        <Empty />
+      )}
     </>
   );
 };
